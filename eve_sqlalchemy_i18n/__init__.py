@@ -5,7 +5,7 @@
 
     :copyright: (c) 2017 RomanSo (CrabTulip Team)
 """
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 from sqlalchemy_utils.functions import get_class_by_table
 
