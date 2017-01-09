@@ -86,15 +86,17 @@ Eve SQLAlchemy i18n with sqlalchemy_i18n
 .. code-block:: python
 
     import eve_sqlalchemy_i18n
+    from eve_sqlalchemy_i18n.sqlalchemy_i18n import EveSQLAlchemyi18n
     from sqlalchemy import Column, BIGINT, Unicode
     from sqlalchemy_i18n import Translatable, translation_base
-
     from models import Base
 
 
-    class ExampleTranslationModel(Translatable, Base):
+    class ExampleTranslationModel(EveSQLAlchemyi18n, Translatable, Base):
         __tablename__ = 'example_translation_model'
         __translatable__ = { 'locales': eve_sqlalchemy_i18n.locales }
+        __BASE__ = Base #EveSQLAlchemyi18n.__init__ call __BASE__.__init__
+
         locale = eve_sqlalchemy_i18n.default_locale
 
         id = Column(BIGINT, primary_key=True, autoincrement=True)

@@ -10,6 +10,16 @@ from sqlalchemy_i18n import Translatable
 from sqlalchemy.ext.hybrid import hybrid_property
 
 
+class EveSQLAlchemyi18n(object):
+    def __init__(self, **kwargs):
+        for col in all_translated_columns(self):
+            column_translations_name = "__{0}_translations__".format(col.name)
+            if column_translations_name in kwargs:
+                trans_col = kwargs.pop(column_translations_name, None)
+                if trans_col:
+                    setattr(self, column_translations_name, trans_col )
+        super(self.__BASE__, self).__init__(**kwargs)
+
 def eve_domain_resource_enable_sqlalchemyi18n(domain, translatable_model, hide_translations):
     if not issubclass(translatable_model, Translatable):
         return
