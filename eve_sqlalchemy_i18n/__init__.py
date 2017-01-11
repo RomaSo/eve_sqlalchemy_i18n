@@ -9,7 +9,7 @@ __version__ = '0.1.1'
 
 from sqlalchemy_utils.functions import get_class_by_table
 
-
+get_locale = None
 default_locale = 'en'
 locales = ['en']
 
